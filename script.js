@@ -65,14 +65,21 @@ const classifyBmi = function (bmiVal) {
 };
 
 const idealBodyWeightMetric = function () {
-  const ht = height.value / (0.0254 * 100); //height in INCHES
-  return 47.75 + 2.3 * (ht - 60);
+  // const ht = height.value / (0.0254 * 100);          //height in INCHES
+  // return 47.75 + 2.3 * (ht - 60);
+
+  const ht = height.value / 100;
+
+  return [18.5 * ht * ht, 24.9 * ht * ht];
 };
 
 const idealBodyWeightImperial = function () {
-  const feetIntiInch = heightFt.value * 12;
-  const ht = feetIntiInch + Number(heightIn.value); //height in INCHES
-  return 47.75 + 2.3 * (ht - 60);
+  // const feetIntiInch = heightFt.value * 12;
+  // const ht = feetIntiInch + Number(heightIn.value); //height in INCHES
+  // return 47.75 + 2.3 * (ht - 60);
+
+  const ht = heightFt.value * 0.3048 + heightIn.value * 0.0254;
+  return [18.5 * ht * ht, 24.9 * ht * ht];
 };
 
 const showResult = function () {
@@ -113,8 +120,8 @@ function calcMetricBmi() {
     const bmiClassify = classifyBmi(bmiVal);
     resultClass.textContent = `${bmiClassify}`;
 
-    const IBWM = idealBodyWeightMetric(ht, wt);
-    resultRange.textContent = `${IBWM.toFixed(1)}`;
+    const [ibwMin, ibwMax] = idealBodyWeightMetric(ht, wt);
+    resultRange.textContent = `${ibwMin.toFixed(1)}-${ibwMax.toFixed(1)}`;
   } else {
     showwelcome();
   }
@@ -129,8 +136,8 @@ function calcImperialBmi() {
     resultVal.textContent = `${bmiVal.toFixed(1)}`;
     const bmiClassify = classifyBmi(bmiVal);
     resultClass.textContent = `${bmiClassify}`;
-    const IBWI = idealBodyWeightImperial(ht, wt);
-    resultRange.textContent = `${IBWI.toFixed(1)}`;
+    const [ibwMin, ibwMax] = idealBodyWeightImperial(ht, wt);
+    resultRange.textContent = `${ibwMin.toFixed(1)}-${ibwMax.toFixed(1)}`;
   } else {
     showwelcome();
   }
