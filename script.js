@@ -121,7 +121,7 @@ function calcMetricBmi() {
     resultClass.textContent = `${bmiClassify}`;
 
     const [ibwMin, ibwMax] = idealBodyWeightMetric(ht, wt);
-    resultRange.textContent = `${ibwMin.toFixed(1)}-${ibwMax.toFixed(1)}`;
+    resultRange.textContent = `${ibwMin.toFixed(1)}kg-${ibwMax.toFixed(1)}kg`;
   } else {
     showwelcome();
   }
@@ -137,7 +137,7 @@ function calcImperialBmi() {
     const bmiClassify = classifyBmi(bmiVal);
     resultClass.textContent = `${bmiClassify}`;
     const [ibwMin, ibwMax] = idealBodyWeightImperial(ht, wt);
-    resultRange.textContent = `${ibwMin.toFixed(1)}-${ibwMax.toFixed(1)}`;
+    resultRange.textContent = `${ibwMin.toFixed(1)}kg-${ibwMax.toFixed(1)}kg`;
   } else {
     showwelcome();
   }
